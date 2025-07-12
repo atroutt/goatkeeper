@@ -32,7 +32,7 @@ const TimerControls = ({
   };
 
   const handleAddTime = () => {
-    setTimeLeft((prevTime) => prevTime + 120);
+    setTimeLeft((prevTime) => prevTime + 60);
   };
 
   return (
@@ -47,7 +47,7 @@ const TimerControls = ({
         Reset
       </button>
       <button onClick={handleAddTime} className="bg-yellow-500 text-white px-4 py-2 rounded">
-        +2 min
+        +1 min
       </button>
       <button onClick={handleNext} className="bg-blue-500 text-white px-4 py-2 rounded">
         Next

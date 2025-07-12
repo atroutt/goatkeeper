@@ -22,6 +22,7 @@ function App() {
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const [timeLeft, setTimeLeft] = useState(agenda[currentItemIndex]?.duration * 60 || 0);
   const [isActive, setIsActive] = useState(false);
+  const [completedItems, setCompletedItems] = useState([]);
 
   useEffect(() => {
     const savedAgenda = localStorage.getItem('agenda');
@@ -36,11 +37,11 @@ function App() {
 
   useEffect(() => {
     setTimeLeft(agenda[currentItemIndex]?.duration * 60 || 0);
-  }, [currentItemIndex, agenda]);
+  }, [currentItemIndex]);
 
   useEffect(() => {
     let interval = null;
-    if (isActive && timeLeft > 0) {
+    if (isActive) {
       interval = setInterval(() => {
         setTimeLeft((timeLeft) => timeLeft - 1);
       }, 1000);
@@ -48,6 +49,7 @@ function App() {
       clearInterval(interval);
     } else if (timeLeft === 0) {
       clearInterval(interval);
+      setCompletedItems([...completedItems, agenda[currentItemIndex].id]);
       // Optional: auto-play next item
       // if (currentItemIndex < agenda.length - 1) {
       //   setCurrentItemIndex(currentItemIndex + 1);
@@ -57,7 +59,7 @@ function App() {
       // }
     }
     return () => clearInterval(interval);
-  }, [isActive, timeLeft, currentItemIndex, agenda]);
+  }, [isActive, timeLeft, currentItemIndex, agenda, completedItems]);
 
   const onDragEnd = (result) => {
     if (!result.destination) return;
@@ -67,7 +69,9 @@ function App() {
     setAgenda(items);
   };
 
-  const dailyAgenda = agenda.filter((item) => item.date === currentDay);
+  const dailyAgenda = agenda.filter(
+    (item) => item.date === currentDay && !completedItems.includes(item.id)
+  );
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
