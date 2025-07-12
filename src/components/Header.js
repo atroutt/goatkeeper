@@ -1,6 +1,4 @@
 import React from 'react';
-
-import React from 'react';
 import Papa from 'papaparse';
 
 const Header = ({ setAgenda, agenda, currentDay, setCurrentDay }) => {

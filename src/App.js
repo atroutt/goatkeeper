@@ -69,16 +69,6 @@ function App() {
 
   const dailyAgenda = agenda.filter((item) => item.date === currentDay);
 
-  const onDragEnd = (result) => {
-    if (!result.destination) return;
-    const items = Array.from(dailyAgenda);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-
-    const otherDaysAgenda = agenda.filter((item) => item.date !== currentDay);
-    setAgenda([...otherDaysAgenda, ...items]);
-  };
-
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="flex flex-col h-screen">
