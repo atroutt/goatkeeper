@@ -63,10 +63,17 @@ function App() {
 
   const onDragEnd = (result) => {
     if (!result.destination) return;
-    const items = Array.from(agenda);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-    setAgenda(items);
+
+    const newDisplayAgenda = Array.from(displayAgenda);
+    const [reorderedItem] = newDisplayAgenda.splice(result.source.index, 1);
+    newDisplayAgenda.splice(result.destination.index, 0, reorderedItem);
+
+    const newAgenda = newDisplayAgenda.concat(agenda.filter(item => completedItems.includes(item.id)));
+    setAgenda(newAgenda);
+
+    // Adjust currentItemIndex
+    const newCurrentItemIndex = newDisplayAgenda.findIndex(item => item.id === displayAgenda[currentItemIndex].id);
+    setCurrentItemIndex(newCurrentItemIndex);
   };
 
   const handleDelete = (id) => {
