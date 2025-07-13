@@ -2,7 +2,7 @@
   "name": "agenda-timer",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://atroutt.github.io/goatkeeper"
+  "homepage": "https://atroutt.github.io/goatkeeper",
   "dependencies": {
     "date-fns": "^4.1.0",
     "lucide-react": "^0.525.0",
