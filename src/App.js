@@ -22,6 +22,7 @@ function App() {
   const [timeLeft, setTimeLeft] = useState(agenda[currentItemIndex]?.duration * 60 || 0);
   const [isActive, setIsActive] = useState(false);
   const [completedItems, setCompletedItems] = useState([]);
+  const [estimatedStartTimes, setEstimatedStartTimes] = useState({});
 
   useEffect(() => {
     const savedAgenda = localStorage.getItem('agenda');
@@ -79,6 +80,24 @@ function App() {
     setAgenda(newAgenda);
   };
 
+  useEffect(() => {
+    const calculateStartTimes = () => {
+      const now = new Date();
+      let cumulativeTime = now.getTime();
+      const newStartTimes = {};
+
+      agenda.forEach((item, index) => {
+        if (index >= currentItemIndex) {
+          newStartTimes[item.id] = new Date(cumulativeTime);
+          cumulativeTime += item.duration * 60 * 1000;
+        }
+      });
+      setEstimatedStartTimes(newStartTimes);
+    };
+
+    calculateStartTimes();
+  }, [agenda, currentItemIndex]);
+
   const displayAgenda = agenda.filter(
     (item) => !completedItems.includes(item.id)
   );
@@ -93,6 +112,7 @@ function App() {
             setAgenda={setAgenda}
             currentItemIndex={currentItemIndex}
             handleDelete={handleDelete}
+            estimatedStartTimes={estimatedStartTimes}
           />
           <main className="flex-1 flex flex-col p-4 overflow-hidden">
             <div className="flex-1 flex flex-col items-center justify-center">
