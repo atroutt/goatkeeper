@@ -42,6 +42,7 @@ const AgendaSidebar = ({ agenda, setAgenda, currentItemIndex, handleDelete, esti
                         setAgenda={setAgenda}
                         handleDelete={handleDelete}
                         estimatedStartTime={estimatedStartTimes[item.id]}
+                        isCurrent={index === currentItemIndex}
                       />
                     </div>
                   )}

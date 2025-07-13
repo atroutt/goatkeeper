@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const AgendaItem = ({ item, setAgenda, handleDelete, estimatedStartTime }) => {
+const AgendaItem = ({ item, setAgenda, handleDelete, estimatedStartTime, isCurrent }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(item.title);
   const [presenter, setPresenter] = useState(item.presenter);
@@ -51,9 +51,9 @@ const AgendaItem = ({ item, setAgenda, handleDelete, estimatedStartTime }) => {
             <h3 className="font-bold">{item.title}</h3>
             <p className="text-sm">{item.presenter}</p>
             <p className="text-sm">{item.duration} minutes</p>
-            {estimatedStartTime && (
+            {estimatedStartTime && !isCurrent && (
               <p className="text-sm text-text-muted">
-                Estimated start: {estimatedStartTime.toLocaleTimeString()}
+                Estimated start: {estimatedStartTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
               </p>
             )}
           </div>
