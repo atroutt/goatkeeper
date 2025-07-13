@@ -10,7 +10,7 @@ const AgendaSidebar = ({ agenda, setAgenda, currentItemIndex, handleDelete, esti
   const [isFormVisible, setIsFormVisible] = useState(false);
 
   return (
-    <div className="w-1/3 bg-background p-4 flex flex-col">
+    <div className="w-1/3 bg-background p-4 flex flex-col" data-testid="agenda-sidebar">
       <h2 className="text-2xl font-bold">Agenda 🐐</h2>
       <div className="flex-1 overflow-y-auto">
         <Droppable droppableId="agenda">

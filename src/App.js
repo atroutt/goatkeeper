@@ -62,13 +62,25 @@ function App() {
   }, [isActive, timeLeft, currentItemIndex, agenda, completedItems]);
 
   const onDragEnd = (result) => {
-    if (!result.destination) return;
+    const { destination, source } = result;
+    if (!destination) {
+      return;
+    }
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
 
-    const newAgenda = Array.from(agenda);
-    const [reorderedItem] = newAgenda.splice(result.source.index, 1);
-    newAgenda.splice(result.destination.index, 0, reorderedItem);
+    const newDisplayedAgenda = Array.from(displayAgenda);
+    const [reorderedItem] = newDisplayedAgenda.splice(source.index, 1);
+    newDisplayedAgenda.splice(destination.index, 0, reorderedItem);
 
-    setAgenda(newAgenda);
+    const newAgenda = newDisplayedAgenda.map(item => agenda.find(originalItem => originalItem.id === item.id));
+    const completedAgenda = agenda.filter(item => completedItems.includes(item.id));
+
+    setAgenda([...newAgenda, ...completedAgenda]);
   };
 
   const handleDelete = (id) => {

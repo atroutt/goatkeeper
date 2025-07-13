@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within, act } from '@testing-library/react';
 import App from './App';
 
 // Mock react-beautiful-dnd
@@ -59,25 +59,48 @@ describe('App', () => {
     expect(screen.getAllByText('Welcome')[0]).toBeInTheDocument();
   });
 
-  it('timer turns red when it expires', async () => {
+  it('reorders the agenda on drag and drop', () => {
+    const { container } = render(<App />);
+    const agendaSidebar = screen.getByTestId('agenda-sidebar');
+    const firstItem = within(agendaSidebar).getByText('Welcome');
+    const secondItem = within(agendaSidebar).getByText('Session 1');
+
+    // Simulate a drag and drop
+    fireEvent.dragStart(firstItem);
+    fireEvent.dragEnter(secondItem);
+    fireEvent.dragOver(secondItem);
+    fireEvent.drop(secondItem);
+
+    const agendaItems = container.querySelectorAll('.p-2.border-b.border-text-muted');
+    expect(agendaItems[0]).toHaveTextContent('Session 1');
+    expect(agendaItems[1]).toHaveTextContent('Welcome');
+  });
+
+  it('timer turns red when it expires', () => {
     jest.useFakeTimers();
-    render(<App />);
+    const { container } = render(<App />);
     fireEvent.click(screen.getByText('Start'));
     // Fast-forward time
-    jest.advanceTimersByTime(5 * 60 * 1000);
+    act(() => {
+      jest.advanceTimersByTime(5 * 60 * 1000);
+    });
     expect(screen.getByText('0:00')).toBeInTheDocument();
-    jest.advanceTimersByTime(1000);
+    act(() => {
+      jest.advanceTimersByTime(1000);
+    });
     const timerDisplay = screen.getByText('-0:01').parentElement;
     expect(timerDisplay).toHaveClass('bg-error');
     jest.useRealTimers();
   });
 
-  it('completed items disappear from the agenda', async () => {
+  it('completed items disappear from the agenda', () => {
     jest.useFakeTimers();
     render(<App />);
     fireEvent.click(screen.getByText('Start'));
     // Fast-forward time
-    jest.advanceTimersByTime(5 * 60 * 1000 + 2000);
+    act(() => {
+      jest.advanceTimersByTime(5 * 60 * 1000 + 2000);
+    });
     const agenda = screen.getByTestId('agenda-sidebar');
     expect(within(agenda).queryByText('Welcome')).toBeNull();
     jest.useRealTimers();
