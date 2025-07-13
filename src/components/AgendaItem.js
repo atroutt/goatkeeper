@@ -46,7 +46,7 @@ const AgendaItem = ({ item, setAgenda, handleDelete, estimatedStartTime, isCurre
           </button>
         </form>
       ) : (
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col">
           <div>
             <h3 className="font-bold">{item.title}</h3>
             <p className="text-sm">{item.presenter}</p>
@@ -57,7 +57,7 @@ const AgendaItem = ({ item, setAgenda, handleDelete, estimatedStartTime, isCurre
               </p>
             )}
           </div>
-          <div>
+          <div className="self-end">
             <button onClick={() => setIsEditing(true)} className="text-xl mr-2">
               ✏️
             </button>
