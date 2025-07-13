@@ -23,13 +23,15 @@ const TimerDisplay = ({ item, timeLeft }) => {
     const hours = Math.floor(seconds / 3600);
     seconds %= 3600;
     const minutes = Math.floor(seconds / 60);
+    const secs = seconds % 60;
 
     let timeString = '';
     if (years > 0) timeString += `${years}y `;
     if (weeks > 0) timeString += `${weeks}w `;
     if (days > 0) timeString += `${days}d `;
     if (hours > 0) timeString += `${hours}h `;
-    if (minutes > 0) timeString += `${minutes}m`;
+    if (minutes > 0) timeString += `${minutes}m `;
+    timeString += `${secs < 10 ? '0' : ''}${secs}s`;
 
     return isNegative ? `-${timeString.trim()}` : timeString.trim();
   };

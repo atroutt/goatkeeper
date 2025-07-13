@@ -23,7 +23,7 @@ const Header = ({ setAgenda, agenda }) => {
       </div>
       <div>
         <button className="bg-accent px-4 py-2 rounded mr-2" onClick={() => setAgenda([])}>Clear Agenda</button>
-        <label className="bg-accent px-4 py-2 rounded mr-2 cursor-pointer">
+        <label className="bg-accent px-4 py-2 rounded mr-2 cursor-pointer inline-block">
           Import CSV
           <input type="file" accept=".csv" onChange={handleImport} className="hidden" />
         </label>
