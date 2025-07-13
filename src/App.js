@@ -110,17 +110,18 @@ function App() {
   );
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
       <div className="flex flex-col h-screen">
         <Header setAgenda={setAgenda} agenda={agenda} />
         <div className="flex flex-1 overflow-hidden">
-          <AgendaSidebar
-            agenda={displayAgenda}
-            setAgenda={setAgenda}
-            currentItemIndex={currentItemIndex}
-            handleDelete={handleDelete}
-            estimatedStartTimes={estimatedStartTimes}
-          />
+          <DragDropContext onDragEnd={onDragEnd}>
+            <AgendaSidebar
+              agenda={displayAgenda}
+              setAgenda={setAgenda}
+              currentItemIndex={currentItemIndex}
+              handleDelete={handleDelete}
+              estimatedStartTimes={estimatedStartTimes}
+            />
+          </DragDropContext>
           <main className="flex-1 flex flex-col p-4 overflow-hidden">
             <div className="flex-1 flex flex-col items-center justify-center">
               <TimerDisplay
