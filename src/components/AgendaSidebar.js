@@ -18,7 +18,6 @@ const AgendaSidebar = ({ agenda, setAgenda, currentItemIndex, handleDelete, esti
             <div {...provided.droppableProps} ref={provided.innerRef} className="mt-4">
               {agenda.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full">
-                  <Goat />
                   <p className="text-text-muted mt-4">No agenda items yet.</p>
                 </div>
               ) : (

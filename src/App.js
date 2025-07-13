@@ -12,9 +12,11 @@ function App() {
       return JSON.parse(savedAgenda);
     } else {
       return [
-        { id: '1', title: 'Welcome', presenter: 'Jules', duration: 5 },
-        { id: '2', title: 'Session 1', presenter: 'Goat', duration: 30 },
-        { id: '3', title: 'Break', presenter: '', duration: 15 },
+        { id: '1', title: 'Welcome Meow-remarks', presenter: 'Milhouse', duration: 5 },
+        { id: '2', title: 'Zoomies Unleashed: Harnessing Your Inner Chaos', presenter: 'Bradley', duration: 30 },
+        { id: '3', title: 'Break', presenter: 'ALL', duration: 15 },
+        { id: '4', title: 'Purrfect Pitch: Vocal Techniques for Getting What You Want', presenter: 'Felix', duration: 60 },
+        { id: '5', title: 'Lunch', presenter: 'ALL - In Kitchen', duration: 30 },
       ];
     }
   });
