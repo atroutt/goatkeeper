@@ -35,10 +35,10 @@ const TimerDisplay = ({ item, timeLeft }) => {
   };
 
   const getBackgroundColor = () => {
-    if (timeLeft < 0) return 'bg-error-red';
-    if (timeLeft <= 120 && timeLeft > 0) return 'bg-coral-1'; // 2 minutes
-    if (timeLeft <= 300 && timeLeft > 0) return 'bg-mustard-1'; // 5 minutes
-    return 'bg-cream';
+    if (timeLeft < 0) return 'bg-error';
+    if (timeLeft <= 120 && timeLeft > 0) return 'bg-accent'; // 2 minutes
+    if (timeLeft <= 300 && timeLeft > 0) return 'bg-primary-light'; // 5 minutes
+    return 'bg-background';
   };
 
   const getFlashAnimation = () => {
@@ -50,9 +50,9 @@ const TimerDisplay = ({ item, timeLeft }) => {
 
   return (
     <div className={`flex-1 flex flex-col items-center justify-center w-full ${getBackgroundColor()} ${getFlashAnimation()}`}>
-      <h1 className={`text-9xl font-bold ${timeLeft < 0 ? 'text-white' : ''}`}>{formatTime(timeLeft)}</h1>
-      <h2 className={`text-5xl ${timeLeft < 0 ? 'text-white' : ''}`}>{item?.title}</h2>
-      <p className={`text-3xl ${timeLeft < 0 ? 'text-white' : ''}`}>{item?.presenter}</p>
+      <h1 className={`text-9xl font-bold ${timeLeft < 0 ? 'text-white' : 'text-text'}`}>{formatTime(timeLeft)}</h1>
+      <h2 className={`text-5xl ${timeLeft < 0 ? 'text-white' : 'text-text'}`}>{item?.title}</h2>
+      <p className={`text-3xl ${timeLeft < 0 ? 'text-white' : 'text-text-muted'}`}>{item?.presenter}</p>
     </div>
   );
 };

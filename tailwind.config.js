@@ -6,30 +6,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        coral: {
-          1: '#FB7564',
-          2: '#EA5B50',
-          3: '#FD9D8C',
-          4: '#FEC0B2',
-          5: '#FFE4D9',
+        primary: {
+          DEFAULT: '#486FA8', // Indigo Blue
+          light: '#D7FA64', // Neon Lime
         },
-        teal: '#0F807D',
-        mustard: {
-          1: '#FCB731',
-          2: '#FFCC6A',
-          3: '#FAD880',
-          4: 'FFF2D2',
+        secondary: '#A57E79', // Mauve
+        accent: '#FA7564', // Coral
+        background: '#FEF2E6', // Blush Pink
+        text: {
+          DEFAULT: '#161616',
+          muted: '#6E737A', // Charcoal Gray
         },
-        grey: {
-          1: '#767676',
-          2: '#A8A29E',
-          3: '#CBC7C5',
-          4: '#F3F3F3',
-        },
-        black: '#161616',
-        white: '#FAFAFA',
-        cream: '#F9F9F3',
-        'error-red': '#AE1505',
+        error: '#FA270C', // Error Red
       },
       keyframes: {
         flash: {

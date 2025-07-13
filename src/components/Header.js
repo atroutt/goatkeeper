@@ -17,18 +17,18 @@ const Header = ({ setAgenda, agenda }) => {
   };
 
   return (
-    <header className="bg-teal text-white p-4 flex justify-between items-center">
+    <header className="bg-primary text-white p-4 flex justify-between items-center">
       <div>
         <h1 className="text-xl font-bold">Onsite Agenda Timer</h1>
       </div>
       <div>
-        <button className="bg-coral-1 px-4 py-2 rounded mr-2" onClick={() => setAgenda([])}>Clear Agenda</button>
-        <label className="bg-coral-1 px-4 py-2 rounded mr-2 cursor-pointer">
+        <button className="bg-accent px-4 py-2 rounded mr-2" onClick={() => setAgenda([])}>Clear Agenda</button>
+        <label className="bg-accent px-4 py-2 rounded mr-2 cursor-pointer">
           Import CSV
           <input type="file" accept=".csv" onChange={handleImport} className="hidden" />
         </label>
-        <button onClick={() => handleExport(agenda)} className="bg-coral-1 px-4 py-2 rounded">Export CSV</button>
-        <button onClick={toggleFullScreen} className="bg-coral-1 px-4 py-2 rounded ml-2">Fullscreen</button>
+        <button onClick={() => handleExport(agenda)} className="bg-accent px-4 py-2 rounded">Export CSV</button>
+        <button onClick={toggleFullScreen} className="bg-accent px-4 py-2 rounded ml-2">Fullscreen</button>
       </div>
     </header>
   );
