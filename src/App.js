@@ -60,12 +60,7 @@ function App() {
     return () => clearInterval(interval);
   }, [isActive, timeLeft, currentItemIndex, agenda]);
 
-  const onDragStart = (start) => {
-    console.log("⏳ Drag started:", start.draggableId, "at index", start.source.index);
-  };
-
   const onDragEnd = (result) => {
-    console.log("✅ Drag end result:", result);
     const { destination, source } = result;
 
     if (!destination || destination.index === source.index) return;
@@ -112,7 +107,7 @@ function App() {
       <div className="flex flex-col h-screen">
         <Header setAgenda={setAgenda} agenda={agenda} />
         <div className="flex flex-1 overflow-hidden">
-          <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
+          <DragDropContext onDragEnd={onDragEnd}>
             <AgendaSidebar
               agenda={displayAgenda}
               setAgenda={setAgenda}
