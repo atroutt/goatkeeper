@@ -1,6 +1,7 @@
 # 🐐 Goatkeeper 🐐
 
 ![GoatKeeper logo](public/GoatKeeper-Logo.png)
+"The Greatest Of All Timers!"
 
 **Goatkeeper** is a meeting facilitation tool that helps you stay on time, stay focused, and steer through packed agendas with grace. Designed for live onsite events and working sessions, it combines a real-time countdown timer with a clear visual agenda and flexible controls to adjust as things shift.
 
