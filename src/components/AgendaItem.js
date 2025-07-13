@@ -46,24 +46,26 @@ const AgendaItem = ({ item, setAgenda, handleDelete, estimatedStartTime, isCurre
           </button>
         </form>
       ) : (
-        <div className="flex flex-col">
+        <div className="flex justify-between">
           <div>
             <h3 className="font-bold">{item.title}</h3>
             <p className="text-sm">{item.presenter}</p>
             <p className="text-sm">{item.duration} minutes</p>
+          </div>
+          <div className="flex flex-col justify-between items-end">
             {estimatedStartTime && !isCurrent && (
               <p className="text-sm text-text-muted">
                 Estimated start: {estimatedStartTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
               </p>
             )}
-          </div>
-          <div className="self-end">
-            <button onClick={() => setIsEditing(true)} className="text-xl mr-2">
-              ✏️
-            </button>
-            <button onClick={() => handleDelete(item.id)} className="text-xl">
-              ❌
-            </button>
+            <div>
+              <button onClick={() => setIsEditing(true)} className="text-xl mr-2">
+                ✏️
+              </button>
+              <button onClick={() => handleDelete(item.id)} className="text-xl">
+                ❌
+              </button>
+            </div>
           </div>
         </div>
       )}
