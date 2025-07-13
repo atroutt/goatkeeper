@@ -35,10 +35,10 @@ const TimerDisplay = ({ item, timeLeft }) => {
   };
 
   const getBackgroundColor = () => {
-    if (timeLeft < 0) return 'bg-red-500';
-    if (timeLeft <= 120 && timeLeft > 0) return 'bg-coral'; // 2 minutes
-    if (timeLeft <= 300 && timeLeft > 0) return 'bg-teal'; // 5 minutes
-    return 'bg-gray-200';
+    if (timeLeft < 0) return 'bg-error-red';
+    if (timeLeft <= 120 && timeLeft > 0) return 'bg-coral-1'; // 2 minutes
+    if (timeLeft <= 300 && timeLeft > 0) return 'bg-mustard-1'; // 5 minutes
+    return 'bg-cream';
   };
 
   const getFlashAnimation = () => {

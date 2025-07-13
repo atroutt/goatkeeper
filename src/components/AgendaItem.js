@@ -42,10 +42,10 @@ const AgendaItem = ({ item, setAgenda }) => {
             onChange={(e) => setDuration(e.target.value)}
             className="p-1 border rounded w-full mb-1"
           />
-          <button type="submit" className="bg-green-500 text-white p-1 rounded mr-1">
+          <button type="submit" className="bg-coral-1 text-white p-1 rounded mr-1">
             Save
           </button>
-          <button onClick={() => setIsEditing(false)} className="bg-gray-500 text-white p-1 rounded">
+          <button onClick={() => setIsEditing(false)} className="bg-grey-2 text-white p-1 rounded">
             Cancel
           </button>
         </form>
