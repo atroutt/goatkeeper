@@ -6,7 +6,7 @@ import Goat from './Goat';
 
 import { useState } from 'react';
 
-const AgendaSidebar = ({ agenda, setAgenda, currentItemIndex }) => {
+const AgendaSidebar = ({ agenda, setAgenda, currentItemIndex, handleDelete }) => {
   const [isFormVisible, setIsFormVisible] = useState(false);
 
   return (
@@ -37,7 +37,7 @@ const AgendaSidebar = ({ agenda, setAgenda, currentItemIndex }) => {
                         index === currentItemIndex + 1 ? 'border-l-4 border-teal' : ''
                       }`}
                     >
-                      <AgendaItem item={item} setAgenda={setAgenda} />
+                      <AgendaItem item={item} setAgenda={setAgenda} handleDelete={handleDelete} />
                     </div>
                   )}
                 </Draggable>

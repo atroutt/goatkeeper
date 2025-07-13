@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const AgendaItem = ({ item, setAgenda }) => {
+const AgendaItem = ({ item, setAgenda, handleDelete }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(item.title);
   const [presenter, setPresenter] = useState(item.presenter);
@@ -14,10 +14,6 @@ const AgendaItem = ({ item, setAgenda }) => {
       )
     );
     setIsEditing(false);
-  };
-
-  const handleDelete = () => {
-    setAgenda((prevAgenda) => prevAgenda.filter((prevItem) => prevItem.id !== item.id));
   };
 
   return (
@@ -60,7 +56,7 @@ const AgendaItem = ({ item, setAgenda }) => {
             <button onClick={() => setIsEditing(true)} className="text-xl mr-2">
               ✏️
             </button>
-            <button onClick={handleDelete} className="text-xl">
+            <button onClick={() => handleDelete(item.id)} className="text-xl">
               ❌
             </button>
           </div>

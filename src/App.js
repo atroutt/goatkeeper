@@ -68,6 +68,17 @@ function App() {
     setAgenda(items);
   };
 
+  const handleDelete = (id) => {
+    const newAgenda = agenda.filter((item) => item.id !== id);
+    const deletedItemIndex = agenda.findIndex((item) => item.id === id);
+
+    if (deletedItemIndex < currentItemIndex) {
+      setCurrentItemIndex(currentItemIndex - 1);
+    }
+
+    setAgenda(newAgenda);
+  };
+
   const displayAgenda = agenda.filter(
     (item) => !completedItems.includes(item.id)
   );
@@ -76,13 +87,14 @@ function App() {
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="flex flex-col h-screen">
         <Header setAgenda={setAgenda} />
-        <div className="flex flex-1">
+        <div className="flex flex-1 overflow-hidden">
           <AgendaSidebar
             agenda={displayAgenda}
             setAgenda={setAgenda}
             currentItemIndex={currentItemIndex}
+            handleDelete={handleDelete}
           />
-          <main className="flex-1 flex flex-col p-4">
+          <main className="flex-1 flex flex-col p-4 overflow-hidden">
             <div className="flex-1 flex flex-col items-center justify-center">
               <TimerDisplay
                 item={displayAgenda[currentItemIndex]}
