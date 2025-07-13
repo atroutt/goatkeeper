@@ -11,7 +11,7 @@ const AgendaSidebar = ({ agenda, setAgenda, currentItemIndex, handleDelete, esti
 
   return (
     <div className="w-1/3 bg-background p-4 flex flex-col">
-      <h2 className="text-2xl font-bold mb-4">Agenda 🐐</h2>
+      <h2 className="text-2xl font-bold">Agenda 🐐</h2>
       <div className="flex-1 overflow-y-auto">
         <Droppable droppableId="agenda">
           {(provided) => (
@@ -19,7 +19,7 @@ const AgendaSidebar = ({ agenda, setAgenda, currentItemIndex, handleDelete, esti
               {agenda.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full">
                   <Goat />
-                  <p className="text-text-muted mt-4">No agenda items for this day.</p>
+                  <p className="text-text-muted mt-4">No agenda items yet.</p>
                 </div>
               ) : (
                 agenda.map((item, index) => (
