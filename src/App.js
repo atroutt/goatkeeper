@@ -90,11 +90,11 @@ function App() {
   useEffect(() => {
     const calculateStartTimes = () => {
       const now = new Date();
-      let cumulativeTime = now.getTime();
+      let cumulativeTime = now.getTime() + (timeLeft * 1000);
       const newStartTimes = {};
 
       agenda.forEach((item, index) => {
-        if (index >= currentItemIndex) {
+        if (index > currentItemIndex) {
           newStartTimes[item.id] = new Date(cumulativeTime);
           cumulativeTime += item.duration * 60 * 1000;
         }
@@ -103,7 +103,7 @@ function App() {
     };
 
     calculateStartTimes();
-  }, [agenda, currentItemIndex]);
+  }, [agenda, currentItemIndex, timeLeft]);
 
   const displayAgenda = agenda.filter(
     (item) => !completedItems.includes(item.id)

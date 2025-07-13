@@ -17,7 +17,7 @@ module.exports = {
           DEFAULT: '#161616',
           muted: '#6E737A', // Charcoal Gray
         },
-        error: '#FA270C', // Error Red
+        error: '#F05333', // Error Red
       },
       keyframes: {
         flash: {
