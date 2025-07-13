@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/goatkeeper/static/css/main.d0686ae2.css",
-    "main.js": "/goatkeeper/static/js/main.538c6a1f.js",
+    "main.css": "/goatkeeper/static/css/main.05b79f3e.css",
+    "main.js": "/goatkeeper/static/js/main.c976fa04.js",
     "index.html": "/goatkeeper/index.html",
-    "main.d0686ae2.css.map": "/goatkeeper/static/css/main.d0686ae2.css.map",
-    "main.538c6a1f.js.map": "/goatkeeper/static/js/main.538c6a1f.js.map"
+    "main.05b79f3e.css.map": "/goatkeeper/static/css/main.05b79f3e.css.map",
+    "main.c976fa04.js.map": "/goatkeeper/static/js/main.c976fa04.js.map"
   },
   "entrypoints": [
-    "static/css/main.d0686ae2.css",
-    "static/js/main.538c6a1f.js"
+    "static/css/main.05b79f3e.css",
+    "static/js/main.c976fa04.js"
   ]
 }
