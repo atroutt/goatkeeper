@@ -6,30 +6,23 @@ import TimerDisplay from './components/TimerDisplay';
 import TimerControls from './components/TimerControls';
 
 function App() {
+
+  const defaultAgenda = [
+    { id: '1', title: 'Welcome', presenter: 'Milhouse', duration: 5 },
+    { id: '2', title: 'Zoomies Unleashed: Harnessing Your Inner Chaos', presenter: 'Bradley', duration: 30 },
+    { id: '3', title: 'Break', presenter: 'ALL', duration: 15 },
+    { id: '4', title: 'Purrfect Pitch: Vocal Techniques for Getting What You Want', presenter: 'Felix', duration: 60 },
+  ];
+
   const [agenda, setAgenda] = useState(() => {
     const savedAgenda = localStorage.getItem('agenda');
-    if (savedAgenda) {
-      return JSON.parse(savedAgenda);
-    } else {
-      return [
-        { id: '1', title: 'Welcome', presenter: 'Milhouse', duration: 5 },
-        { id: '2', title: 'Zoomies Unleashed: Harnessing Your Inner Chaos', presenter: 'Bradley', duration: 30 },
-        { id: '3', title: 'Break', presenter: 'ALL', duration: 15 },
-        { id: '4', title: 'Purrfect Pitch: Vocal Techniques for Getting What You Want', presenter: 'Felix', duration: 60 },
-      ];
-    }
+    return savedAgenda ? JSON.parse(savedAgenda) : defaultAgenda;
   });
+
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const [timeLeft, setTimeLeft] = useState(agenda[currentItemIndex]?.duration * 60 || 0);
   const [isActive, setIsActive] = useState(false);
   const [estimatedStartTimes, setEstimatedStartTimes] = useState({});
-
-  useEffect(() => {
-    const savedAgenda = localStorage.getItem('agenda');
-    if (savedAgenda) {
-      setAgenda(JSON.parse(savedAgenda));
-    }
-  }, []);
 
   useEffect(() => {
     localStorage.setItem('agenda', JSON.stringify(agenda));
@@ -101,15 +94,13 @@ function App() {
     calculateStartTimes();
   }, [agenda, currentItemIndex, timeLeft]);
 
-  const displayAgenda = agenda;
-
   return (
       <div className="flex flex-col h-screen">
         <Header setAgenda={setAgenda} agenda={agenda} />
         <div className="flex flex-1 overflow-hidden">
           <DragDropContext onDragEnd={onDragEnd}>
             <AgendaSidebar
-              agenda={displayAgenda}
+              agenda={agenda}
               setAgenda={setAgenda}
               currentItemIndex={currentItemIndex}
               handleDelete={handleDelete}
@@ -119,7 +110,7 @@ function App() {
           <main className="flex-1 flex flex-col p-4 overflow-hidden">
             <div className="flex-1 flex flex-col items-center justify-center">
               <TimerDisplay
-                item={displayAgenda[currentItemIndex]}
+                item={agenda[currentItemIndex]}
                 timeLeft={timeLeft}
               />
             </div>
@@ -130,7 +121,7 @@ function App() {
                 setTimeLeft={setTimeLeft}
                 setCurrentItemIndex={setCurrentItemIndex}
                 currentItemIndex={currentItemIndex}
-                agenda={displayAgenda}
+                agenda={agenda}
               />
             </div>
           </main>
