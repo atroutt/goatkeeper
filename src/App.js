@@ -112,7 +112,7 @@ function App() {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="flex flex-col h-screen">
-        <Header setAgenda={setAgenda} />
+        <Header setAgenda={setAgenda} agenda={agenda} />
         <div className="flex flex-1 overflow-hidden">
           <AgendaSidebar
             agenda={displayAgenda}
