@@ -1,37 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { DragDropContext } from 'react-beautiful-dnd';
+import { DragDropContext } from '@hello-pangea/dnd';
 import Header from './components/Header';
 import AgendaSidebar from './components/AgendaSidebar';
 import TimerDisplay from './components/TimerDisplay';
 import TimerControls from './components/TimerControls';
 
 function App() {
+
+  const defaultAgenda = [
+    { id: '1', title: 'Welcome', presenter: 'Milhouse', duration: 5 },
+    { id: '2', title: 'Zoomies Unleashed: Harnessing Your Inner Chaos', presenter: 'Bradley', duration: 30 },
+    { id: '3', title: 'Break', presenter: 'ALL', duration: 15 },
+    { id: '4', title: 'Purrfect Pitch: Vocal Techniques for Getting What You Want', presenter: 'Felix', duration: 60 },
+  ];
+
   const [agenda, setAgenda] = useState(() => {
     const savedAgenda = localStorage.getItem('agenda');
-    if (savedAgenda) {
-      return JSON.parse(savedAgenda);
-    } else {
-      return [
-        { id: '1', title: 'Welcome Meow-remarks', presenter: 'Milhouse', duration: 5 },
-        { id: '2', title: 'Zoomies Unleashed: Harnessing Your Inner Chaos', presenter: 'Bradley', duration: 30 },
-        { id: '3', title: 'Break', presenter: 'ALL', duration: 15 },
-        { id: '4', title: 'Purrfect Pitch: Vocal Techniques for Getting What You Want', presenter: 'Felix', duration: 60 },
-        { id: '5', title: 'Lunch', presenter: 'ALL - In Kitchen', duration: 30 },
-      ];
-    }
+    return savedAgenda ? JSON.parse(savedAgenda) : defaultAgenda;
   });
+
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const [timeLeft, setTimeLeft] = useState(agenda[currentItemIndex]?.duration * 60 || 0);
   const [isActive, setIsActive] = useState(false);
-  const [completedItems, setCompletedItems] = useState([]);
   const [estimatedStartTimes, setEstimatedStartTimes] = useState({});
-
-  useEffect(() => {
-    const savedAgenda = localStorage.getItem('agenda');
-    if (savedAgenda) {
-      setAgenda(JSON.parse(savedAgenda));
-    }
-  }, []);
 
   useEffect(() => {
     localStorage.setItem('agenda', JSON.stringify(agenda));
@@ -51,7 +42,6 @@ function App() {
       clearInterval(interval);
     } else if (timeLeft === 0) {
       clearInterval(interval);
-      setCompletedItems([...completedItems, agenda[currentItemIndex].id]);
       // Optional: auto-play next item
       // if (currentItemIndex < agenda.length - 1) {
       //   setCurrentItemIndex(currentItemIndex + 1);
@@ -61,21 +51,18 @@ function App() {
       // }
     }
     return () => clearInterval(interval);
-  }, [isActive, timeLeft, currentItemIndex, agenda, completedItems]);
+  }, [isActive, timeLeft, currentItemIndex, agenda]);
 
   const onDragEnd = (result) => {
-    if (!result.destination) return;
+    const { destination, source } = result;
 
-    const newDisplayAgenda = Array.from(displayAgenda);
-    const [reorderedItem] = newDisplayAgenda.splice(result.source.index, 1);
-    newDisplayAgenda.splice(result.destination.index, 0, reorderedItem);
+    if (!destination || destination.index === source.index) return;
 
-    const newAgenda = newDisplayAgenda.concat(agenda.filter(item => completedItems.includes(item.id)));
-    setAgenda(newAgenda);
+    const reordered = Array.from(agenda);
+    const [movedItem] = reordered.splice(source.index, 1);
+    reordered.splice(destination.index, 0, movedItem);
 
-    // Adjust currentItemIndex
-    const newCurrentItemIndex = newDisplayAgenda.findIndex(item => item.id === displayAgenda[currentItemIndex].id);
-    setCurrentItemIndex(newCurrentItemIndex);
+    setAgenda(reordered);
   };
 
   const handleDelete = (id) => {
@@ -107,17 +94,13 @@ function App() {
     calculateStartTimes();
   }, [agenda, currentItemIndex, timeLeft]);
 
-  const displayAgenda = agenda.filter(
-    (item) => !completedItems.includes(item.id)
-  );
-
   return (
       <div className="flex flex-col h-screen">
         <Header setAgenda={setAgenda} agenda={agenda} />
         <div className="flex flex-1 overflow-hidden">
           <DragDropContext onDragEnd={onDragEnd}>
             <AgendaSidebar
-              agenda={displayAgenda}
+              agenda={agenda}
               setAgenda={setAgenda}
               currentItemIndex={currentItemIndex}
               handleDelete={handleDelete}
@@ -127,7 +110,7 @@ function App() {
           <main className="flex-1 flex flex-col p-4 overflow-hidden">
             <div className="flex-1 flex flex-col items-center justify-center">
               <TimerDisplay
-                item={displayAgenda[currentItemIndex]}
+                item={agenda[currentItemIndex]}
                 timeLeft={timeLeft}
               />
             </div>
@@ -138,7 +121,7 @@ function App() {
                 setTimeLeft={setTimeLeft}
                 setCurrentItemIndex={setCurrentItemIndex}
                 currentItemIndex={currentItemIndex}
-                agenda={displayAgenda}
+                agenda={agenda}
               />
             </div>
           </main>

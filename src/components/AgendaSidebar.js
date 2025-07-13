@@ -1,13 +1,18 @@
-import React from 'react';
-import { Droppable, Draggable } from 'react-beautiful-dnd';
+import React, { useEffect, useState } from 'react';
+import { Droppable, Draggable } from '@hello-pangea/dnd';
 import AgendaItem from './AgendaItem';
 import AddAgendaItemForm from './AddAgendaItemForm';
-import Goat from './Goat';
-
-import { useState } from 'react';
 
 const AgendaSidebar = ({ agenda, setAgenda, currentItemIndex, handleDelete, estimatedStartTimes }) => {
   const [isFormVisible, setIsFormVisible] = useState(false);
+
+  useEffect(() => {
+    const ids = agenda.map((i) => i.id);
+    const hasDuplicates = new Set(ids).size !== ids.length;
+    if (hasDuplicates) console.warn("Duplicate agenda item IDs!", ids);
+
+    const types = agenda.map(i => typeof i.id);
+  }, [agenda]);
 
   return (
     <div className="w-1/3 bg-background p-4 flex flex-col">
@@ -22,7 +27,7 @@ const AgendaSidebar = ({ agenda, setAgenda, currentItemIndex, handleDelete, esti
                 </div>
               ) : (
                 agenda.map((item, index) => (
-                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                  <Draggable key={item.id} draggableId={item.id.toString()} index={index}>
                     {(provided, snapshot) => (
                       <div
                         ref={provided.innerRef}
