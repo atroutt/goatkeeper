@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { DragDropContext } from 'react-beautiful-dnd';
+import { DragDropContext } from '@hello-pangea/dnd';
 import Header from './components/Header';
 import AgendaSidebar from './components/AgendaSidebar';
 import TimerDisplay from './components/TimerDisplay';
