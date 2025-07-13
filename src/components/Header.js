@@ -45,7 +45,13 @@ const toggleFullScreen = () => {
 };
 
 const handleExport = (agenda) => {
-  const csv = Papa.unparse(agenda);
+  const exportableAgenda = agenda.map(({ id, title, presenter, duration }) => ({
+    id,
+    title,
+    presenter,
+    duration,
+  }));
+  const csv = Papa.unparse(exportableAgenda);
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
   const link = document.createElement('a');
   const url = URL.createObjectURL(blob);
