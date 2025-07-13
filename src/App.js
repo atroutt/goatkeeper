@@ -142,7 +142,6 @@ function App() {
           </main>
         </div>
       </div>
-    </DragDropContext>
   );
 }
 

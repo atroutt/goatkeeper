@@ -8,7 +8,7 @@ module.exports = {
       colors: {
         primary: {
           DEFAULT: '#486FA8', // Indigo Blue
-          light: '#FACE8F', // Neon Lime
+          light: '#FACE8F', // Sand
         },
         secondary: '#A57E79', // Mauve
         accent: '#FA7564', // Coral

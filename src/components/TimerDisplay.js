@@ -38,8 +38,8 @@ const TimerDisplay = ({ item, timeLeft }) => {
 
   const getBackgroundColor = () => {
     if (timeLeft < 0) return 'bg-error';
-    if (timeLeft <= 120 && timeLeft > 0) return 'bg-accent'; // 2 minutes
-    if (timeLeft <= 300 && timeLeft > 0) return 'bg-primary-light'; // 5 minutes
+    if (timeLeft <= 120 && timeLeft > 0) return 'bg-primary-light'; // 2 minutes
+    if (timeLeft <= 300 && timeLeft > 0) return 'bg-primary'; // 5 minutes
     return 'bg-background';
   };
 

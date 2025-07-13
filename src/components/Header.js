@@ -17,10 +17,9 @@ const Header = ({ setAgenda, agenda }) => {
   };
 
   return (
-    <header className="bg-primary text-white p-4 flex justify-between items-center">
+    <header className="bg-primary text-white p-2 flex justify-between items-center">
       <div className="flex items-center">
-        <img src="https://icon.horse/icon/fast.com" alt="Logo" className="h-8 w-8 mr-2" />
-        <h1 className="text-xl font-bold">Onsite Agenda Timer</h1>
+        <img src="/GoatKeeper-Logo.png" alt="Logo" className="h-20 mr-0" />
       </div>
       <div>
         <label className="bg-accent px-4 py-2 rounded mr-2 cursor-pointer inline-block">
