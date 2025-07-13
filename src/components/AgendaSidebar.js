@@ -7,14 +7,11 @@ const AgendaSidebar = ({ agenda, setAgenda, currentItemIndex, handleDelete, esti
   const [isFormVisible, setIsFormVisible] = useState(false);
 
   useEffect(() => {
-    console.log("Agenda updated:", agenda.map((item) => item.id));
-
     const ids = agenda.map((i) => i.id);
     const hasDuplicates = new Set(ids).size !== ids.length;
     if (hasDuplicates) console.warn("Duplicate agenda item IDs!", ids);
 
     const types = agenda.map(i => typeof i.id);
-    console.log("ID types:", types);
   }, [agenda]);
 
   return (
