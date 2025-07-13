@@ -45,7 +45,7 @@ const AddAgendaItemForm = ({ setAgenda }) => {
           onChange={(e) => setDuration(e.target.value)}
           className="p-2 border rounded"
         />
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded">
+        <button type="submit" className="bg-primary text-white p-2 rounded">
           Add Item
         </button>
       </div>

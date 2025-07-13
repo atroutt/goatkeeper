@@ -6,8 +6,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        coral: '#FC9384',
-        teal: '#5EAAA8',
+        primary: {
+          DEFAULT: '#486FA8', // Indigo Blue
+          light: '#FACE8F', // Sand
+        },
+        secondary: '#A57E79', // Mauve
+        accent: '#FA7564', // Coral
+        background: '#FEF2E6', // Blush Pink
+        text: {
+          DEFAULT: '#161616',
+          muted: '#6E737A', // Charcoal Gray
+        },
+        error: '#F05333', // Error Red
       },
       keyframes: {
         flash: {

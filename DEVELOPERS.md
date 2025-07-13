@@ -4,7 +4,7 @@ This document provides information for developers who want to extend, refactor, 
 
 ## 📝 Project Overview
 
-The Onsite Agenda Timer is a web-based application designed to help manage the agenda for a multi-day onsite event. It provides a large, easy-to-read timer and a simple interface for managing the agenda.
+The Onsite Agenda Timer is a web-based application designed to help manage an event agenda. It provides a large, easy-to-read timer and a simple interface for managing the agenda.
 
 ## 🏛️ Architecture
 
@@ -13,8 +13,8 @@ The application is a single-page application (SPA) built with React. It uses loc
 ### Major Components
 
 *   `App.js`: The main component that manages the application state and brings all the other components together.
-*   `Header.js`: The header component that contains the day navigation, import/export buttons, and fullscreen toggle.
-*   `AgendaSidebar.js`: The sidebar component that displays the agenda and allows for adding, editing, and reordering of agenda items.
+*   `Header.js`: The header component that contains the import/export buttons, and fullscreen toggle.
+*   `AgendaSidebar.js`: The sidebar component that displays the agenda and allows for adding, editing, and reordering of agenda items. The "Add Item" form is also located here and is collapsible.
 *   `AgendaItem.js`: The component that displays a single agenda item.
 *   `TimerDisplay.js`: The component that displays the countdown timer and visual alerts.
 *   `TimerControls.js`: The component that contains the timer controls (start, pause, reset, etc.).

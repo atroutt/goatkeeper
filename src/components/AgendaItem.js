@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const AgendaItem = ({ item, setAgenda }) => {
+const AgendaItem = ({ item, setAgenda, handleDelete, estimatedStartTime, isCurrent }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(item.title);
   const [presenter, setPresenter] = useState(item.presenter);
@@ -16,12 +16,8 @@ const AgendaItem = ({ item, setAgenda }) => {
     setIsEditing(false);
   };
 
-  const handleDelete = () => {
-    setAgenda((prevAgenda) => prevAgenda.filter((prevItem) => prevItem.id !== item.id));
-  };
-
   return (
-    <div className="p-2 border-b">
+    <div className="p-2 border-b border-text-muted">
       {isEditing ? (
         <form onSubmit={handleUpdate}>
           <input
@@ -42,24 +38,35 @@ const AgendaItem = ({ item, setAgenda }) => {
             onChange={(e) => setDuration(e.target.value)}
             className="p-1 border rounded w-full mb-1"
           />
-          <button type="submit" className="bg-green-500 text-white p-1 rounded mr-1">
+          <button type="submit" className="bg-primary text-white p-1 rounded mr-1">
             Save
           </button>
-          <button onClick={() => setIsEditing(false)} className="bg-gray-500 text-white p-1 rounded">
+          <button onClick={() => setIsEditing(false)} className="bg-secondary text-white p-1 rounded">
             Cancel
           </button>
         </form>
       ) : (
-        <div>
-          <h3 className="font-bold">{item.title}</h3>
-          <p className="text-sm">{item.presenter}</p>
-          <p className="text-sm">{item.duration} minutes</p>
-          <button onClick={() => setIsEditing(true)} className="bg-yellow-500 text-white p-1 rounded mr-1">
-            Edit
-          </button>
-          <button onClick={handleDelete} className="bg-red-500 text-white p-1 rounded">
-            Delete
-          </button>
+        <div className="flex justify-between">
+          <div>
+            <h3 className="font-bold">{item.title}</h3>
+            <p className="text-sm">{item.presenter}</p>
+            <p className="text-sm">{item.duration} minutes</p>
+            {estimatedStartTime && !isCurrent && (
+              <p className="text-sm text-text-muted">
+                Estimated Start: {estimatedStartTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+              </p>
+            )}
+          </div>
+          <div className="flex flex-end justify-between items-end w-5">
+            <div>
+              <button onClick={() => setIsEditing(true)} className="text-l mr-2">
+                ✏️
+              </button>
+              <button onClick={() => handleDelete(item.id)} className="text-l">
+                ❌
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>
