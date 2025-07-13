@@ -57,6 +57,7 @@ const AgendaSidebar = ({ agenda, setAgenda, currentItemIndex }) => {
         </button>
         {isFormVisible && <AddAgendaItemForm setAgenda={setAgenda} />}
       </div>
+    </div>
   );
 };
 
