@@ -1,37 +1,36 @@
 # 🐐 Onsite Agenda Timer
 
-A simple, clean, and intuitive web-based timer for managing your multi-day onsite event agenda.
+A simple, clean, and intuitive web-based timer for managing your event agenda.
 
 ## ✨ Features
 
 - 🗓️ **Agenda Management:** Add, edit, and reorder agenda items with drag-and-drop.
 - ⏱️ **Large Timer Display:** A clear, easy-to-read countdown timer for the current agenda item.
-- 🎨 **Visual Alerts:** The timer flashes at 5 and 2 minutes remaining to keep you on track.
+- 🎨 **Visual Alerts:** The timer flashes at 5 and 2 minutes remaining, and turns red when time is up.
 - 📂 **CSV Import/Export:** Easily import and export your agenda.
-- 📆 **Multi-Day Support:** Navigate between multiple days of your event.
 - 💾 **Auto-Save:** Your agenda is automatically saved in your browser's local storage.
 - 🖥️ **Fullscreen Mode:** A distraction-free view for projecting the timer.
+- 📜 **Scrollable Agenda:** The agenda list is scrollable for long agendas.
+- 𝘏 **Collapsible Form:** The "Add Item" form can be shown or hidden.
 
 ## 🚀 Getting Started
 
 1.  **Launch the App:** Open the provided URL in your web browser.
 2.  **Add Agenda Items:**
-    *   Use the form in the sidebar to add new agenda items.
+    *   Click the "Add New Item" button to show the form.
     *   Fill in the title, presenter, and duration (in minutes).
     *   Click "Add Item" to add it to the agenda.
 3.  **Edit Agenda Items:**
-    *   Click the "Edit" button on an agenda item to make changes.
+    *   Click the pencil icon on an agenda item to make changes.
     *   Click "Save" to save your changes.
 4.  **Reorder Agenda Items:**
     *   Click and drag an agenda item to reorder it.
-5.  **Navigate Between Days:**
-    *   Click the date tabs at the top of the page to switch between days.
-6.  **Control the Timer:**
+5.  **Control the Timer:**
     *   **Start/Pause:** Start or pause the timer.
     *   **Reset:** Reset the timer to the original duration.
-    *   **+2 min:** Add two minutes to the current time.
+    *   **+1 min:** Add one minute to the current time.
     *   **Prev/Next:** Move to the previous or next agenda item.
-7.  **Import/Export CSV:**
+6.  **Import/Export CSV:**
     *   **Import:** Click "Import CSV" to upload a CSV file with your agenda.
     *   **Export:** Click "Export CSV" to download the current agenda as a CSV file.
 8.  **Fullscreen Mode:**

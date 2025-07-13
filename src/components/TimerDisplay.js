@@ -6,10 +6,32 @@ const TimerDisplay = ({ item, timeLeft }) => {
     if (isNegative) {
       seconds = -seconds;
     }
+
+    if (seconds < 3600) { // Less than an hour
+      const minutes = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      const timeString = `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+      return isNegative ? `-${timeString}` : timeString;
+    }
+
+    const years = Math.floor(seconds / (365 * 24 * 3600));
+    seconds %= (365 * 24 * 3600);
+    const weeks = Math.floor(seconds / (7 * 24 * 3600));
+    seconds %= (7 * 24 * 3600);
+    const days = Math.floor(seconds / (24 * 3600));
+    seconds %= (24 * 3600);
+    const hours = Math.floor(seconds / 3600);
+    seconds %= 3600;
     const minutes = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    const timeString = `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
-    return isNegative ? `-${timeString}` : timeString;
+
+    let timeString = '';
+    if (years > 0) timeString += `${years}y `;
+    if (weeks > 0) timeString += `${weeks}w `;
+    if (days > 0) timeString += `${days}d `;
+    if (hours > 0) timeString += `${hours}h `;
+    if (minutes > 0) timeString += `${minutes}m`;
+
+    return isNegative ? `-${timeString.trim()}` : timeString.trim();
   };
 
   const getBackgroundColor = () => {

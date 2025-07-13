@@ -18,7 +18,6 @@ function App() {
       ];
     }
   });
-  const [currentDay, setCurrentDay] = useState('2024-07-12');
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const [timeLeft, setTimeLeft] = useState(agenda[currentItemIndex]?.duration * 60 || 0);
   const [isActive, setIsActive] = useState(false);
@@ -69,38 +68,37 @@ function App() {
     setAgenda(items);
   };
 
-  const dailyAgenda = agenda.filter(
-    (item) => item.date === currentDay && !completedItems.includes(item.id)
+  const displayAgenda = agenda.filter(
+    (item) => !completedItems.includes(item.id)
   );
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="flex flex-col h-screen">
-        <Header
-          setAgenda={setAgenda}
-          agenda={agenda}
-          currentDay={currentDay}
-          setCurrentDay={setCurrentDay}
-        />
+        <Header setAgenda={setAgenda} />
         <div className="flex flex-1">
           <AgendaSidebar
-            agenda={dailyAgenda}
+            agenda={displayAgenda}
             setAgenda={setAgenda}
             currentItemIndex={currentItemIndex}
           />
-          <main className="flex-1 flex flex-col items-center justify-center p-4">
-            <TimerDisplay
-              item={dailyAgenda[currentItemIndex]}
-              timeLeft={timeLeft}
-            />
-            <TimerControls
-              isActive={isActive}
-              setIsActive={setIsActive}
-              setTimeLeft={setTimeLeft}
-              setCurrentItemIndex={setCurrentItemIndex}
-              currentItemIndex={currentItemIndex}
-              agenda={dailyAgenda}
-            />
+          <main className="flex-1 flex flex-col p-4">
+            <div className="flex-1 flex flex-col items-center justify-center">
+              <TimerDisplay
+                item={displayAgenda[currentItemIndex]}
+                timeLeft={timeLeft}
+              />
+            </div>
+            <div className="sticky bottom-0 bg-white p-4">
+              <TimerControls
+                isActive={isActive}
+                setIsActive={setIsActive}
+                setTimeLeft={setTimeLeft}
+                setCurrentItemIndex={setCurrentItemIndex}
+                currentItemIndex={currentItemIndex}
+                agenda={displayAgenda}
+              />
+            </div>
           </main>
         </div>
       </div>

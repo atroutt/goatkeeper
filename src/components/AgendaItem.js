@@ -50,16 +50,20 @@ const AgendaItem = ({ item, setAgenda }) => {
           </button>
         </form>
       ) : (
-        <div>
-          <h3 className="font-bold">{item.title}</h3>
-          <p className="text-sm">{item.presenter}</p>
-          <p className="text-sm">{item.duration} minutes</p>
-          <button onClick={() => setIsEditing(true)} className="bg-yellow-500 text-white p-1 rounded mr-1">
-            Edit
-          </button>
-          <button onClick={handleDelete} className="bg-red-500 text-white p-1 rounded">
-            Delete
-          </button>
+        <div className="flex justify-between items-center">
+          <div>
+            <h3 className="font-bold">{item.title}</h3>
+            <p className="text-sm">{item.presenter}</p>
+            <p className="text-sm">{item.duration} minutes</p>
+          </div>
+          <div>
+            <button onClick={() => setIsEditing(true)} className="text-xl mr-2">
+              ✏️
+            </button>
+            <button onClick={handleDelete} className="text-xl">
+              ❌
+            </button>
+          </div>
         </div>
       )}
     </div>
