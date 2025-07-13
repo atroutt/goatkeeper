@@ -18,7 +18,8 @@ const Header = ({ setAgenda, agenda }) => {
 
   return (
     <header className="bg-primary text-white p-4 flex justify-between items-center">
-      <div>
+      <div className="flex items-center">
+        <img src="https://icon.horse/icon/fast.com" alt="Logo" className="h-8 w-8 mr-2" />
         <h1 className="text-xl font-bold">Onsite Agenda Timer</h1>
       </div>
       <div>
