@@ -17,7 +17,7 @@ const AgendaItem = ({ item, setAgenda, handleDelete }) => {
   };
 
   return (
-    <div className="p-2 border-b">
+    <div className="p-2 border-b border-text-muted">
       {isEditing ? (
         <form onSubmit={handleUpdate}>
           <input
@@ -38,10 +38,10 @@ const AgendaItem = ({ item, setAgenda, handleDelete }) => {
             onChange={(e) => setDuration(e.target.value)}
             className="p-1 border rounded w-full mb-1"
           />
-          <button type="submit" className="bg-coral-1 text-white p-1 rounded mr-1">
+          <button type="submit" className="bg-primary text-white p-1 rounded mr-1">
             Save
           </button>
-          <button onClick={() => setIsEditing(false)} className="bg-grey-2 text-white p-1 rounded">
+          <button onClick={() => setIsEditing(false)} className="bg-secondary text-white p-1 rounded">
             Cancel
           </button>
         </form>
