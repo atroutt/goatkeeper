@@ -19,7 +19,7 @@ const Header = ({ setAgenda, agenda }) => {
   return (
     <header className="bg-primary text-white p-2 flex justify-between items-center">
       <div className="flex items-end">
-        <img src="GoatKeeper-Logo.png" alt="Logo" className="h-20 mr-0" />
+        <img src="/goatkeeper/GoatKeeper-Logo.png" alt="Logo" className="h-20 mr-0" />
         <h1 className="text-l font-bold mb-0 pl-3 text-accent"><i>...the Greatest Of All Timers</i></h1>
       </div>
       <div>

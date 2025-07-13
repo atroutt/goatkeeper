@@ -12,18 +12,16 @@ function App() {
       return JSON.parse(savedAgenda);
     } else {
       return [
-        { id: '1', title: 'Welcome Meow-remarks', presenter: 'Milhouse', duration: 5 },
+        { id: '1', title: 'Welcome', presenter: 'Milhouse', duration: 5 },
         { id: '2', title: 'Zoomies Unleashed: Harnessing Your Inner Chaos', presenter: 'Bradley', duration: 30 },
         { id: '3', title: 'Break', presenter: 'ALL', duration: 15 },
         { id: '4', title: 'Purrfect Pitch: Vocal Techniques for Getting What You Want', presenter: 'Felix', duration: 60 },
-        { id: '5', title: 'Lunch', presenter: 'ALL - In Kitchen', duration: 30 },
       ];
     }
   });
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const [timeLeft, setTimeLeft] = useState(agenda[currentItemIndex]?.duration * 60 || 0);
   const [isActive, setIsActive] = useState(false);
-  const [completedItems, setCompletedItems] = useState([]);
   const [estimatedStartTimes, setEstimatedStartTimes] = useState({});
 
   useEffect(() => {
@@ -51,7 +49,6 @@ function App() {
       clearInterval(interval);
     } else if (timeLeft === 0) {
       clearInterval(interval);
-      setCompletedItems([...completedItems, agenda[currentItemIndex].id]);
       // Optional: auto-play next item
       // if (currentItemIndex < agenda.length - 1) {
       //   setCurrentItemIndex(currentItemIndex + 1);
@@ -61,21 +58,23 @@ function App() {
       // }
     }
     return () => clearInterval(interval);
-  }, [isActive, timeLeft, currentItemIndex, agenda, completedItems]);
+  }, [isActive, timeLeft, currentItemIndex, agenda]);
+
+  const onDragStart = (start) => {
+    console.log("⏳ Drag started:", start.draggableId, "at index", start.source.index);
+  };
 
   const onDragEnd = (result) => {
-    if (!result.destination) return;
+    console.log("✅ Drag end result:", result);
+    const { destination, source } = result;
 
-    const newDisplayAgenda = Array.from(displayAgenda);
-    const [reorderedItem] = newDisplayAgenda.splice(result.source.index, 1);
-    newDisplayAgenda.splice(result.destination.index, 0, reorderedItem);
+    if (!destination || destination.index === source.index) return;
 
-    const newAgenda = newDisplayAgenda.concat(agenda.filter(item => completedItems.includes(item.id)));
-    setAgenda(newAgenda);
+    const reordered = Array.from(agenda);
+    const [movedItem] = reordered.splice(source.index, 1);
+    reordered.splice(destination.index, 0, movedItem);
 
-    // Adjust currentItemIndex
-    const newCurrentItemIndex = newDisplayAgenda.findIndex(item => item.id === displayAgenda[currentItemIndex].id);
-    setCurrentItemIndex(newCurrentItemIndex);
+    setAgenda(reordered);
   };
 
   const handleDelete = (id) => {
@@ -107,15 +106,13 @@ function App() {
     calculateStartTimes();
   }, [agenda, currentItemIndex, timeLeft]);
 
-  const displayAgenda = agenda.filter(
-    (item) => !completedItems.includes(item.id)
-  );
+  const displayAgenda = agenda;
 
   return (
       <div className="flex flex-col h-screen">
         <Header setAgenda={setAgenda} agenda={agenda} />
         <div className="flex flex-1 overflow-hidden">
-          <DragDropContext onDragEnd={onDragEnd}>
+          <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
             <AgendaSidebar
               agenda={displayAgenda}
               setAgenda={setAgenda}
