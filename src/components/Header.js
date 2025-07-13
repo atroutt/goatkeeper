@@ -45,6 +45,7 @@ const toggleFullScreen = () => {
 };
 
 const handleExport = (agenda) => {
+  if (!agenda) return;
   const exportableAgenda = agenda.map(({ id, title, presenter, duration }) => ({
     id,
     title,
