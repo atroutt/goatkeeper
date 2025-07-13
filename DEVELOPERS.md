@@ -1,10 +1,12 @@
-# 🐐 Onsite Agenda Timer - Developer Documentation
+# 🐐 GoatKeeper - Developer Documentation
 
-This document provides information for developers who want to extend, refactor, or maintain the Onsite Agenda Timer app.
+This document provides information for developers who want to extend, refactor, or maintain the GoatKeeper app.
+
+Primarily this is for Audrey and her AI minions. Although, you are welcome to clone, modify and run this too! 
 
 ## 📝 Project Overview
 
-The Onsite Agenda Timer is a web-based application designed to help manage an event agenda. It provides a large, easy-to-read timer and a simple interface for managing the agenda.
+GoatKeeper is a web-based application designed to help manage an event agenda. It provides a large, easy-to-read timer and a simple interface for managing the agenda.
 
 ## 🏛️ Architecture
 
@@ -41,6 +43,11 @@ The application uses React's `useState` and `useEffect` hooks for state manageme
     ```bash
     npm run build
     ```
+  4.  **Deploy to github pages:**
+    ```bash
+    npm run deploy
+    ```
+    See it live https://audreytroutt.com/goatkeeper/
 
 ## 🛠️ How to Modify or Add Features
 
