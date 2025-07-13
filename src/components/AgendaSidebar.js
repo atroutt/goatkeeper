@@ -23,7 +23,7 @@ const AgendaSidebar = ({ agenda, setAgenda, currentItemIndex, handleDelete, esti
                 </div>
               ) : (
                 agenda.map((item, index) => (
-                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                  <Draggable key={item.id} draggableId={String(item.id)} index={index}>
                     {(provided, snapshot) => (
                       <div
                         ref={provided.innerRef}

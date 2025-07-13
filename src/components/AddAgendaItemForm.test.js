@@ -5,6 +5,10 @@ import AddAgendaItemForm from './AddAgendaItemForm';
 describe('AddAgendaItemForm', () => {
   const setAgenda = jest.fn();
 
+  beforeEach(() => {
+    setAgenda.mockClear();
+  });
+
   it('renders the form', () => {
     render(<AddAgendaItemForm setAgenda={setAgenda} />);
     expect(screen.getByPlaceholderText('Title')).toBeInTheDocument();

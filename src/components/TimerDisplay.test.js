@@ -27,12 +27,12 @@ describe('TimerDisplay', () => {
   it('applies the correct background color', () => {
     const item = { title: 'Test Title', presenter: 'Test Presenter' };
     const { container } = render(<TimerDisplay item={item} timeLeft={120} />);
-    expect(container.firstChild).toHaveClass('bg-coral');
+    expect(container.firstChild).toHaveClass('bg-primary-light');
   });
 
   it('applies the red background for negative time', () => {
     const item = { title: 'Test Title', presenter: 'Test Presenter' };
     const { container } = render(<TimerDisplay item={item} timeLeft={-10} />);
-    expect(container.firstChild).toHaveClass('bg-red-500');
+    expect(container.firstChild).toHaveClass('bg-error');
   });
 });

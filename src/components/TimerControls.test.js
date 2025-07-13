@@ -22,7 +22,7 @@ describe('TimerControls', () => {
         setIsActive={setIsActive}
         setTimeLeft={setTimeLeft}
         setCurrentItemIndex={setCurrentItemIndex}
-        agenda={[{ duration: 5 }]}
+        agenda={[{ duration: 5 }, { duration: 10 }]}
         currentItemIndex={0}
       />
     );
@@ -42,5 +42,9 @@ describe('TimerControls', () => {
 
     fireEvent.click(screen.getByText('Prev'));
     expect(setCurrentItemIndex).toHaveBeenCalledWith(0);
+
+    // Clicking "Prev" at the beginning of the list should not change the index
+    fireEvent.click(screen.getByText('Prev'));
+    expect(setCurrentItemIndex).toHaveBeenCalledTimes(2);
   });
 });

@@ -15,21 +15,22 @@ describe('AgendaItem', () => {
 
   it('switches to edit mode', () => {
     render(<AgendaItem item={item} setAgenda={setAgenda} />);
-    fireEvent.click(screen.getByText('Edit'));
+    fireEvent.click(screen.getByText('✏️'));
     expect(screen.getByDisplayValue('Test Title')).toBeInTheDocument();
     expect(screen.getByDisplayValue('Test Presenter')).toBeInTheDocument();
     expect(screen.getByDisplayValue('10')).toBeInTheDocument();
   });
 
   it('calls setAgenda on delete', () => {
-    render(<AgendaItem item={item} setAgenda={setAgenda} />);
-    fireEvent.click(screen.getByText('Delete'));
-    expect(setAgenda).toHaveBeenCalled();
+    const handleDelete = jest.fn();
+    render(<AgendaItem item={item} setAgenda={setAgenda} handleDelete={handleDelete} />);
+    fireEvent.click(screen.getByText('❌'));
+    expect(handleDelete).toHaveBeenCalledWith('1');
   });
 
   it('calls setAgenda on update', () => {
     render(<AgendaItem item={item} setAgenda={setAgenda} />);
-    fireEvent.click(screen.getByText('Edit'));
+    fireEvent.click(screen.getByText('✏️'));
     fireEvent.click(screen.getByText('Save'));
     expect(setAgenda).toHaveBeenCalled();
   });
